@@ -97,7 +97,7 @@ def main():
 
     subprocess.call('wmctrl -a gedit'.split(' '))
     gedit_id = subprocess.check_output('xdotool getwindowfocus'.split(' ')).strip('\n')
-    gedit_hide_command = ('xdotool windowmove %s -50 -50' % gedit_id).split(' ')
+    gedit_hide_command = ('xdotool windowmove %s -5000 -5000' % gedit_id).split(' ')
     subprocess.call(gedit_hide_command)
     
     while (1):
