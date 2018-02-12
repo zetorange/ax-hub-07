@@ -1,8 +1,10 @@
 import subprocess
+from subprocess import PIPE, Popen
 import pyautogui
 import random
 import time
 import string
+import re
 
 
 BASE_WINDOWS = ['Google Chrome', 'Sublime', 'gedit']
@@ -10,6 +12,26 @@ BROWSER_DURATION_START = 30
 BROWSER_DURATION_END = 80
 BROWSER_MOUSE_INIT_X = 100
 BROWSER_MOUSE_INIT_Y = 100
+
+
+def get_active_window():
+    root = subprocess.Popen(['xprop', '-root', '_NET_ACTIVE_WINDOW'], stdout=subprocess.PIPE)
+    stdout, stderr = root.communicate()
+
+    m = re.search(b'^_NET_ACTIVE_WINDOW.* ([\w]+),.*$', stdout)
+    if m != None:
+        window_id = m.group(1)
+        window = subprocess.Popen(['xprop', '-id', window_id, 'WM_NAME'], stdout=subprocess.PIPE)
+        stdout, stderr = window.communicate()
+    else:
+        return None
+
+    match = re.match(b"WM_NAME\(\w+\) = (?P<name>.+)$", stdout)
+    if match != None:
+        return match.group("name").strip('"')
+
+    return None
+
 
 def act_mouse():
     time.sleep(1)
@@ -53,7 +75,11 @@ def act_keyboard():
     N = random.randint(50, 100)
     random_str = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(N))
     speed = float(random.randint(2,3))/10
-    pyautogui.typewrite(random_str, interval=speed)
+    for s in random_str:
+        if 'gedit' not in get_active_window():
+            return
+        pyautogui.typewrite(s)
+        time.sleep(speed)
 
 def main():
     windows = subprocess.check_output(['wmctrl', '-l']).split('\n')
