@@ -44,8 +44,8 @@ def act_mouse():
         idx = random.randint(0, 10)
         rnd_x = random.randint(100, size_x-100)
         rnd_y = random.randint(100, size_y-100)
-        rnd_scroll = random.randint(-30, 30)
-        if idx == 0:
+        rnd_scroll = random.randint(-10, 30)
+        if idx < 2:
             pyautogui.moveTo(rnd_x, rnd_y, duration=1)
         elif idx < 4:
             pyautogui.scroll(rnd_scroll)
@@ -74,7 +74,7 @@ def act_keyboard():
     subprocess.call(['wmctrl', '-a', 'gedit'])
     N = random.randint(30, 60)
     random_str = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(N))
-    speed = float(random.randint(8,10))/10
+    speed = float(random.randint(15,20))/10
     for s in random_str:
         if get_active_window():
             if 'gedit' not in get_active_window():
