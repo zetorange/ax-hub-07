@@ -72,7 +72,7 @@ def act_mouse():
 def act_keyboard():
     time.sleep(1)
     subprocess.call(['wmctrl', '-a', 'gedit'])
-    N = random.randint(30, 60)
+    N = random.randint(20, 30)
     random_str = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(N))
     speed = float(random.randint(15,20))/10
     for s in random_str:
