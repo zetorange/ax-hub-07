@@ -8,8 +8,8 @@ import re
 
 
 BASE_WINDOWS = ['Google Chrome', 'Sublime', 'gedit']
-BROWSER_DURATION_START = 30
-BROWSER_DURATION_END = 80
+BROWSER_DURATION_START = 20
+BROWSER_DURATION_END = 70
 BROWSER_MOUSE_INIT_X = 100
 BROWSER_MOUSE_INIT_Y = 100
 
@@ -72,13 +72,15 @@ def act_mouse():
 def act_keyboard():
     time.sleep(1)
     subprocess.call(['wmctrl', '-a', 'gedit'])
-    N = random.randint(20, 30)
+    N = random.randint(8, 12)
     random_str = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(N))
-    speed = float(random.randint(15,20))/10
+    speed = float(random.randint(12,17))/10
     for s in random_str:
-        if get_active_window():
+        try:
             if 'gedit' not in get_active_window():
                 return
+        except:
+            return
         pyautogui.typewrite(s)
         time.sleep(speed)
 
