@@ -8,7 +8,7 @@ import re
 
 
 BASE_WINDOWS = ['Google Chrome', 'Sublime', 'gedit']
-BROWSER_DURATION_START = 20
+BROWSER_DURATION_START = 50
 BROWSER_DURATION_END = 70
 BROWSER_MOUSE_INIT_X = 100
 BROWSER_MOUSE_INIT_Y = 100
@@ -41,20 +41,21 @@ def act_mouse():
         size = pyautogui.size()
         size_x = size[0]
         size_y = size[1]
-        idx = random.randint(0, 10)
+        idx = random.randint(0, 20)
         rnd_x = random.randint(100, size_x-100)
         rnd_y = random.randint(100, size_y-100)
-        rnd_scroll = random.randint(-10, 30)
-        if idx < 2:
+        rnd_scroll = random.randint(-20, 30)
+        if idx < 3:
             pyautogui.moveTo(rnd_x, rnd_y, duration=1)
         elif idx < 4:
             pyautogui.scroll(rnd_scroll)
             time.sleep(1)
         elif idx < 5:
-            pyautogui.moveTo(BROWSER_MOUSE_INIT_X, BROWSER_MOUSE_INIT_Y, duration=0.1)
+            # pyautogui.moveTo(BROWSER_MOUSE_INIT_X, BROWSER_MOUSE_INIT_Y, duration=0.1)
+            pyautogui.moveTo(size_x, size_y/2, duration=0.1)
             pyautogui.click()
             time.sleep(1)
-        elif idx < 7:
+        elif idx < 6:
             pyautogui.hotkey('ctrlleft', 'tab')
             time.sleep(1)
         else:
