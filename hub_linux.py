@@ -7,7 +7,8 @@ import string
 import re
 
 
-BASE_WINDOWS = ['Google Chrome', 'Sublime', 'gedit']
+# BASE_WINDOWS = ['gedit', 'Google Chrome', 'Sublime']
+BASE_WINDOWS = ['gedit', 'IDA', 'Sublime']
 BROWSER_DURATION_START = 50
 BROWSER_DURATION_END = 70
 BROWSER_MOUSE_INIT_X = 100
@@ -35,7 +36,7 @@ def get_active_window():
 
 def act_mouse():
     time.sleep(1)
-    def action():
+    def action(choice_window):
         global BROWSER_MOUSE_INIT_X
         global BROWSER_MOUSE_INIT_Y
         size = pyautogui.size()
@@ -56,18 +57,19 @@ def act_mouse():
             pyautogui.click()
             time.sleep(1)
         elif idx < 6:
-            pyautogui.hotkey('ctrlleft', 'tab')
+            if BASE_WINDOWS[choice_window] != 'IDA':
+                pyautogui.hotkey('ctrlleft', 'tab')
             time.sleep(1)
         else:
             time.sleep(1)
         
-    choice_window = random.randint(0,1)
+    choice_window = random.randint(1, len(BASE_WINDOWS)-1)
     subprocess.call(['wmctrl', '-a', BASE_WINDOWS[choice_window]])
 
     period = random.randint(BROWSER_DURATION_START, BROWSER_DURATION_END)
     sec = 0
     while(sec < period):
-        action()
+        action(choice_window)
         sec += 1
 
 def act_keyboard():
