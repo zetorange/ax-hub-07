@@ -7,8 +7,8 @@ import string
 import re
 
 
-# BASE_WINDOWS = ['gedit', 'Google Chrome', 'Sublime']
-BASE_WINDOWS = ['gedit', 'IDA', 'Sublime']
+BASE_WINDOWS = ['gedit', 'Google Chrome', 'Sublime']
+# BASE_WINDOWS = ['gedit', 'IDA', 'Sublime']
 BROWSER_DURATION_START = 50
 BROWSER_DURATION_END = 70
 BROWSER_MOUSE_INIT_X = 100
