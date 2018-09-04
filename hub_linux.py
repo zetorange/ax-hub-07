@@ -8,7 +8,9 @@ import re
 
 
 BASE_WINDOWS = ['gedit', 'Google Chrome', 'Sublime']
-# BASE_WINDOWS = ['gedit', 'IDA', 'Sublime']
+# BASE_WINDOWS = ['gedit', 'Google Chrome', 'Google Chrome']
+# BASE_WINDOWS = ['gedit', 'Sublime', 'Sublime']
+# BASE_WINDOWS = ['gedit', ' IDA ', ' IDA ']
 BROWSER_DURATION_START = 50
 BROWSER_DURATION_END = 70
 BROWSER_MOUSE_INIT_X = 100
@@ -49,15 +51,15 @@ def act_mouse():
         if idx < 3:
             pyautogui.moveTo(rnd_x, rnd_y, duration=1)
         elif idx < 4:
+            pyautogui.moveTo(BROWSER_MOUSE_INIT_X, BROWSER_MOUSE_INIT_Y, duration=0.1)
             pyautogui.scroll(rnd_scroll)
             time.sleep(1)
         elif idx < 5:
-            # pyautogui.moveTo(BROWSER_MOUSE_INIT_X, BROWSER_MOUSE_INIT_Y, duration=0.1)
-            pyautogui.moveTo(size_x, size_y/2, duration=0.1)
+            pyautogui.moveTo(BROWSER_MOUSE_INIT_X, BROWSER_MOUSE_INIT_Y, duration=0.1)
             pyautogui.click()
             time.sleep(1)
         elif idx < 6:
-            if BASE_WINDOWS[choice_window] != 'IDA':
+            if BASE_WINDOWS[choice_window] != ' IDA ':
                 pyautogui.hotkey('ctrlleft', 'tab')
             time.sleep(1)
         else:
