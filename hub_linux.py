@@ -60,7 +60,12 @@ def act_mouse():
             time.sleep(1)
         elif idx < 6:
             if BASE_WINDOWS[choice_window] != ' IDA ':
-                pyautogui.hotkey('ctrlleft', 'tab')
+                pyautogui.keyDown('ctrlleft')
+                tab_len = random.randint(0, 10)
+                for _ in range(tab_len):
+                    pyautogui.keyDown('tab')
+                    pyautogui.keyUp('tab')
+                pyautogui.keyUp('ctrlleft')
             time.sleep(1)
         else:
             time.sleep(1)
