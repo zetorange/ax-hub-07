@@ -116,6 +116,6 @@ def main():
     while (1):
         act_keyboard()
         act_mouse()
-        time.sleep(random.randint(240, 900))
+        time.sleep(random.randint(60, 180))
 
 main()
