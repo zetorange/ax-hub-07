@@ -47,7 +47,7 @@ def act_mouse():
         idx = random.randint(0, 20)
         rnd_x = random.randint(100, size_x-100)
         rnd_y = random.randint(100, size_y-100)
-        rnd_scroll = random.randint(-20, 30)
+        rnd_scroll = random.randint(-5, 5)
         if idx < 3:
             pyautogui.moveTo(rnd_x, rnd_y, duration=1)
         elif idx < 4:
@@ -106,12 +106,13 @@ def main():
     global BROWSER_MOUSE_INIT_Y
     BROWSER_MOUSE_INIT_X, BROWSER_MOUSE_INIT_Y = pyautogui.position()
 
-    time.sleep(1)
+    time.sleep(3)
 
     subprocess.call('wmctrl -a gedit'.split(' '))
-    gedit_id = subprocess.check_output('xdotool getwindowfocus'.split(' ')).strip('\n')
-    gedit_hide_command = ('xdotool windowmove %s -5000 -5000' % gedit_id).split(' ')
-    subprocess.call(gedit_hide_command)
+#    gedit_id = subprocess.check_output('xdotool getwindowfocus'.split(' ')).strip('\n')
+#    gedit_hide_command = ('xdotool windowmove %s -5000 -5000' % gedit_id).split(' ')
+#    subprocess.call(gedit_hide_command)
+    subprocess.call('wmctrl -r gedit -b add,below'.split(' '))
     
     while (1):
         act_keyboard()
