@@ -9,7 +9,8 @@ import re
 
 # BASE_WINDOWS = ['gedit', 'Google Chrome', 'Sublime']
 # BASE_WINDOWS = ['gedit', 'Google Chrome', 'Google Chrome']
-BASE_WINDOWS = ['gedit', 'Sublime', 'Sublime']
+# BASE_WINDOWS = ['gedit', 'Sublime', 'Sublime']
+BASE_WINDOWS = ['gedit', 'Visual Studio', 'Visual Studio']
 # BASE_WINDOWS = ['gedit', ' IDA ', ' IDA ']
 BROWSER_DURATION_START = 50
 BROWSER_DURATION_END = 70
@@ -99,7 +100,7 @@ def main():
     for base_win in BASE_WINDOWS:
         opened_win = [win for win in windows if base_win in win]
         if not opened_win:
-            print 'You need to open %s!' % base_win
+            print('You need to open %s!' % base_win)
             return
 
     global BROWSER_MOUSE_INIT_X
