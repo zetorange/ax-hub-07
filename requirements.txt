@@ -1,3 +1,3 @@
-python-xlib
+python3-xlib
 pyautogui==0.9.38
 PyScreeze==0.1.18

@@ -9,8 +9,8 @@ import re
 
 # BASE_WINDOWS = ['gedit', 'Google Chrome', 'Sublime']
 # BASE_WINDOWS = ['gedit', 'Google Chrome', 'Google Chrome']
-# BASE_WINDOWS = ['gedit', 'Sublime', 'Sublime']
-BASE_WINDOWS = ['gedit', 'Visual Studio', 'Visual Studio']
+BASE_WINDOWS = ['gedit', 'Sublime', 'Sublime']
+# BASE_WINDOWS = ['gedit', 'Visual Studio', 'Visual Studio']
 # BASE_WINDOWS = ['gedit', ' IDA ', ' IDA ']
 BROWSER_DURATION_START = 50
 BROWSER_DURATION_END = 70
@@ -53,7 +53,7 @@ def act_mouse():
             pyautogui.moveTo(rnd_x, rnd_y, duration=1)
         elif idx < 4:
             pyautogui.moveTo(BROWSER_MOUSE_INIT_X, BROWSER_MOUSE_INIT_Y, duration=0.1)
-            # pyautogui.scroll(rnd_scroll)
+            pyautogui.scroll(rnd_scroll)
             time.sleep(1)
         elif idx < 5:
             pyautogui.moveTo(BROWSER_MOUSE_INIT_X, BROWSER_MOUSE_INIT_Y, duration=0.1)
@@ -96,7 +96,7 @@ def act_keyboard():
         time.sleep(speed)
 
 def main():
-    windows = subprocess.check_output(['wmctrl', '-l']).split('\n')
+    windows = subprocess.check_output(['wmctrl', '-l']).decode().split('\n')
     for base_win in BASE_WINDOWS:
         opened_win = [win for win in windows if base_win in win]
         if not opened_win:
